@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website with Login and Registration Form | CodingNepal</title>
+    <title>SIMAKSI PENDAKIAN ONLINE</title>
     <!-- Google Fonts Link For Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <link rel="stylesheet" href="index.css">
@@ -16,13 +15,11 @@
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a href="#" class="logo">
                 <img src="pendaki logo.jpg" alt="logo">
-                <h2>CodingNepal</h2>
+                <h2>SIMAKSI ONLINE</h2>
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Courses</a></li>
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Contact us</a></li>
             </ul>
@@ -34,6 +31,7 @@
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
         <div class="form-box login">
+            
             <div class="form-details">
                 <h2>Welcome Back</h2>
                 <p>Please log in using your personal information to stay connected with us.</p>
@@ -59,6 +57,7 @@
             </div>
         </div>
         <div class="form-box signup">
+            
             <div class="form-details">
                 <h2>Create Account</h2>
                 <p>To become a part of our community, please sign up using your personal information.</p>
@@ -87,6 +86,47 @@
                     Already have an account? 
                     <a href="#" id="login-link">Login</a>
                 </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const signUpForm = document.querySelector(".form-box.signup form");
+                        const signUpLink = document.getElementById("signup-link");
+                        const loginLink = document.getElementById("login-link");
+            
+                        signUpForm.addEventListener("submit", function(event) {
+                            event.preventDefault(); // Prevent the default form submission
+            
+                            // Perform form validation and registration logic here
+                            // For simplicity, let's assume the registration is always successful
+                            // You can replace the following line with your actual registration logic
+            
+                            // Display notification
+                            alert("Registration successful!");
+            
+                            // Reset the form
+                            signUpForm.reset();
+            
+                            // Optionally, you can redirect the user to the login page
+                            // window.location.href = "#"; // Replace "#" with the login page URL
+                        });
+            
+                        signUpLink.addEventListener("click", function() {
+                            showForm("signup");
+                        });
+            
+                        loginLink.addEventListener("click", function() {
+                            showForm("login");
+                        });
+            
+                        function showForm(formType) {
+                            const forms = document.querySelectorAll(".form-box");
+                            forms.forEach(form => form.classList.remove("active"));
+            
+                            const activeForm = document.querySelector(`.form-box.${formType}`);
+                            activeForm.classList.add("active");
+                        
+                        }
+                    });
+                </script>
             </div>
         </div>
     </div>
