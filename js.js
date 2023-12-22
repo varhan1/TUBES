@@ -1,34 +1,85 @@
-const navbarMenu = document.querySelector(".navbar .links");
-const hamburgerBtn = document.querySelector(".hamburger-btn");
-const hideMenuBtn = navbarMenu.querySelector(".close-btn");
-const showPopupBtn = document.querySelector(".login-btn");
-const formPopup = document.querySelector(".form-popup");
-const hidePopupBtn = formPopup.querySelector(".close-btn");
-const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
+let menu = document.querySelector('#menu-bars');
+let navbar = document.querySelector('.navbar');
 
+menu.onclick = () =>{
+  menu.classList.toggle('fa-times');
+  navbar.classList.toggle('active');
+}
 
-// Show mobile menu 
-hamburgerBtn.addEventListener("click", () => {
-    navbarMenu.classList.toggle("show-menu");
+let themeToggler = document.querySelector('.theme-toggler');
+let toggleBtn = document.querySelector('.toggle-btn');
+
+toggleBtn.onclick = () =>{
+  themeToggler.classList.toggle('active');
+}
+
+window.onscroll = () =>{
+  menu.classList.remove('fa-times');
+  navbar.classList.remove('active');
+  themeToggler.classList.remove('active');
+}
+
+document.querySelectorAll('.theme-toggler .theme-btn').forEach(btn =>{
+  
+  btn.onclick = () =>{
+    let color = btn.style.background;
+    document.querySelector(':root').style.setProperty('--main-color', color);
+  }
+
 });
 
-// Hide mobile menu
-hideMenuBtn.addEventListener("click", () =>  hamburgerBtn.click());
-
-// Show login popup
-showPopupBtn.addEventListener("click", () => {
-    document.body.classList.toggle("show-popup");
+var swiper = new Swiper(".home-slider", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 0,
+    stretch: 0,
+    depth: 100,
+    modifier: 2,
+    slideShadows: true,
+  },
+  loop:true,
+  autoplay:{
+    delay: 3000,
+    disableOnInteraction:false,
+  }
 });
 
-// Hide login popup
-hidePopupBtn.addEventListener("click", () => showPopupBtn.click());
+let loadMoreBtn = document.querySelector('.package .load-more .btn');
+let currentItem = 3;
 
-// Show or hide signup form
-signupLoginLink.forEach(link => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        formPopup.classList[link.id === 'signup-link' ? 'add' : 'remove']("show-signup");
+loadMoreBtn.onclick = () =>{
+   let boxes = [...document.querySelectorAll('.package .box-container .box')];
+   for (var i = currentItem; i < currentItem + 3; i++){
+      boxes[i].style.display = 'inline-block';
+   };
+   currentItem += 3;
+   if(currentItem >= boxes.length){
+      loadMoreBtn.style.display = 'none';
+   }
+}
 
 
-    });
+var swiper = new Swiper(".review-slider", {
+    slidesPerView: 1,
+    grabCursor: true,
+    loop:true,
+    spaceBetween: 10,
+    breakpoints: {
+      0: {
+          slidesPerView: 1,
+      },
+      700: {
+        slidesPerView: 2,
+      },
+      1050: {
+        slidesPerView: 3,
+      },    
+    },
+    autoplay:{
+      delay: 5000,
+      disableOnInteraction:false,
+  }
 });
